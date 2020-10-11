@@ -24,8 +24,8 @@ namespace cs_new
         {
             InitializeComponent();
  
-            TestList testList = new TestList();
-            listView.DataContext = testList.Data;
+            NodeList nodeList = new NodeList();
+            listView.DataContext = nodeList.Data;
 
 //            this.DataContext = new PrefList();
 

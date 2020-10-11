@@ -11,10 +11,11 @@
 <ListView ItemsSource="{Binding}" x:Name="listView" Margin="30,30,0,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="教科" DisplayMemberBinding="{Binding Path=Subj}" Width="50"/>
-                    <GridViewColumn Header="点数" DisplayMemberBinding="{Binding Path=Points}" Width="50"/>
-                    <GridViewColumn Header="氏名" DisplayMemberBinding="{Binding Path=Name}" Width="100"/>
-                    <GridViewColumn Header="クラス名" DisplayMemberBinding="{Binding Path=ClassName}" Width="50"/>
+                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=Node_num}" Width="50"/>
+                    <GridViewColumn Header="x" DisplayMemberBinding="{Binding Path=Node_x}" Width="50"/>
+                    <GridViewColumn Header="y" DisplayMemberBinding="{Binding Path=Node_y}" Width="50"/>
+                    <GridViewColumn Header="from" DisplayMemberBinding="{Binding Path=Node_from}" Width="60"/>
+                    <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=Node_cost}" Width="60"/>
                 </GridView>
             </ListView.View>
 </ListView>
