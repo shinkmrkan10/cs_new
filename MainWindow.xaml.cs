@@ -23,7 +23,7 @@ namespace cs_new
         public MainWindow()
         {
             InitializeComponent();
-
+ 
             TestList testList = new TestList();
             listView.DataContext = testList.Data;
 
