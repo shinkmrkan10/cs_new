@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:cs_new"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
- 
-<ListView ItemsSource="{Binding}" x:Name="listView" >
+<Grid>
+<StackPanel Margin="10">
+<ListView ItemsSource="{Binding}" x:Name="listView" Margin="30,30,0,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="教科" DisplayMemberBinding="{Binding Path=Subj}" Width="50"/>
@@ -17,6 +18,8 @@
                 </GridView>
             </ListView.View>
 </ListView>
+</StackPanel>
+</Grid>
 <!--
     <Grid>
         <DataGrid ItemsSource="{Binding Path=Data}" x:Name="dataGrid" />
