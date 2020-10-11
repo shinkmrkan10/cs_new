@@ -1,0 +1,28 @@
+﻿<Window x:Class="cs_new.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cs_new"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+<ListView ItemsSource="{Binding}" x:Name="listView" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="教科" DisplayMemberBinding="{Binding Path=Subj}" Width="50"/>
+                    <GridViewColumn Header="点数" DisplayMemberBinding="{Binding Path=Points}" Width="50"/>
+                    <GridViewColumn Header="氏名" DisplayMemberBinding="{Binding Path=Name}" Width="100"/>
+                    <GridViewColumn Header="クラス名" DisplayMemberBinding="{Binding Path=ClassName}" Width="50"/>
+                </GridView>
+            </ListView.View>
+</ListView>
+<!--
+    <Grid>
+        <DataGrid ItemsSource="{Binding Path=Data}" x:Name="dataGrid" />
+    </Grid>
+    <ComboBox>
+        <ComboBox ItemsSource="{Binding Path=Data}" x:Name="comboBox" />
+    </ComboBox>
+-->
+</Window>
