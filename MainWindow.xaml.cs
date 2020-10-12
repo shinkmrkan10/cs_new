@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -22,16 +21,14 @@ namespace cs_new
     {
         public MainWindow()
         {
+ 
             InitializeComponent();
 
             NodeList nodeList = new NodeList();
-            listView1.DataContext = nodeList.Data;
+            listView.DataContext = nodeList.Data;
 
             EdgeList edgeList = new EdgeList();
             listView2.DataContext = edgeList.Data;
-
-//            this.DataContext = new PrefList();
-
 
         }
     }

@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 <StackPanel Margin="10" Grid.Column="0">
-<ListView ItemsSource="{Binding}" x:Name="listView1" Margin="30,30,0,0">
+<ListView ItemsSource="{Binding}" x:Name="listView" Margin="30,30,0,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=num}" Width="30"/>
@@ -40,12 +40,4 @@
 </Grid>
 </ScrollViewer>
 
-<!--
-    <Grid>
-        <DataGrid ItemsSource="{Binding Path=Data}" x:Name="dataGrid" />
-    </Grid>
-    <ComboBox>
-        <ComboBox ItemsSource="{Binding Path=Data}" x:Name="comboBox" />
-    </ComboBox>
--->
 </Window>
