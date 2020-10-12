@@ -30,6 +30,8 @@ namespace cs_new
             EdgeList edgeList = new EdgeList();
             listView2.DataContext = edgeList.Data;
 
+            Dijkstra dijkstra = new Dijkstra();
+            listView2.DataContext = edgeList.Data;
         }
     }
 }

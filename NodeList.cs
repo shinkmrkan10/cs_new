@@ -21,7 +21,7 @@ public class NodeList {
 		    {
 		      	if (d.num == 0){
 		        d.cost = 0;
-				d.used = true;
+//				d.used = true;
 				}
 		    }		
 		}
