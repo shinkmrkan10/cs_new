@@ -23,9 +23,12 @@ namespace cs_new
         public MainWindow()
         {
             InitializeComponent();
- 
+
             NodeList nodeList = new NodeList();
-            listView.DataContext = nodeList.Data;
+            listView1.DataContext = nodeList.Data;
+
+            EdgeList edgeList = new EdgeList();
+            listView2.DataContext = edgeList.Data;
 
 //            this.DataContext = new PrefList();
 

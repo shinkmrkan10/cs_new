@@ -6,21 +6,40 @@
         xmlns:local="clr-namespace:cs_new"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+<ScrollViewer VerticalScrollBarVisibility="Visible">
 <Grid>
-<StackPanel Margin="10">
-<ListView ItemsSource="{Binding}" x:Name="listView" Margin="30,30,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+<StackPanel Margin="10" Grid.Column="0">
+<ListView ItemsSource="{Binding}" x:Name="listView1" Margin="30,30,0,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=Node_num}" Width="50"/>
-                    <GridViewColumn Header="x" DisplayMemberBinding="{Binding Path=Node_x}" Width="50"/>
-                    <GridViewColumn Header="y" DisplayMemberBinding="{Binding Path=Node_y}" Width="50"/>
-                    <GridViewColumn Header="from" DisplayMemberBinding="{Binding Path=Node_from}" Width="60"/>
-                    <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=Node_cost}" Width="60"/>
+                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=num}" Width="30"/>
+                    <GridViewColumn Header="x" DisplayMemberBinding="{Binding Path=x}" Width="30"/>
+                    <GridViewColumn Header="y" DisplayMemberBinding="{Binding Path=y}" Width="30"/>
+                    <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=cost}" Width="60"/>
+                    <GridViewColumn Header="used" DisplayMemberBinding="{Binding Path=used}" Width="40"/>
+                </GridView>
+            </ListView.View>
+</ListView>
+</StackPanel>
+<StackPanel Margin="10" Grid.Column="1">
+<ListView ItemsSource="{Binding}" x:Name="listView2" Margin="30,30,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="From" DisplayMemberBinding="{Binding Path=from}" Width="30"/>
+                    <GridViewColumn Header="To" DisplayMemberBinding="{Binding Path=to}" Width="30"/>
+                    <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=cost}" Width="60"/>
                 </GridView>
             </ListView.View>
 </ListView>
 </StackPanel>
 </Grid>
+</ScrollViewer>
+
 <!--
     <Grid>
         <DataGrid ItemsSource="{Binding Path=Data}" x:Name="dataGrid" />
