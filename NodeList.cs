@@ -1,29 +1,41 @@
 using System.Collections.ObjectModel;
+using System.Windows.Data;
  
 public class NodeList {
+  // スレッド間の排他ロックに利用するオブジェクト
+  private object _lockObject = new object();
 		const int INF = 1000000;
 		const int WIDTH = 6;
 		const int HEIGHT =6;
         // バインディングの指定先プロパティ
-        public ObservableCollection<Node> Data { get; set; }
+        public ObservableCollection<Node> DataN { get; set; }
  
         // コンストラクタ(データ入力)
         public NodeList() {
-            Data = new ObservableCollection<Node>();
+            DataN = new ObservableCollection<Node>();
 			for(int j=0;j<HEIGHT;j++){
 				for(int i=0;i<WIDTH;i++){
 					int n = j * WIDTH + i;
-					Data.Add(new Node{num=n,x=i,y=j,cost=INF,used=false});
+					DataN.Add(new Node{num=n,x=i,y=j,cost=INF,used=false});
 				}
 			}
 		// スタートノード(num==0)設定
-		    foreach (Node d in Data)
+		    foreach (Node d in DataN)
 		    {
 		      	if (d.num == 0){
 		        d.cost = 0;
 //				d.used = true;
 				}
 		    }		
-		}
+            // 複数スレッドからコレクション操作できるようにする
+            BindingOperations.EnableCollectionSynchronization(this.DataN, _lockObject);
+ 		}
+		 public void set_true(int num){
+			 foreach(Node d in DataN){
+				 if(d.num == num){
+					 d.used = true;
+				 }
+			 }
+		 }
     }   
 

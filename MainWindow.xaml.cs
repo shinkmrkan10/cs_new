@@ -25,13 +25,16 @@ namespace cs_new
             InitializeComponent();
 
             NodeList nodeList = new NodeList();
-            listView.DataContext = nodeList.Data;
+            listViewNode.DataContext = nodeList.DataN;
 
             EdgeList edgeList = new EdgeList();
-            listView2.DataContext = edgeList.Data;
 
             Dijkstra dijkstra = new Dijkstra();
-            listView2.DataContext = edgeList.Data;
+
+            listViewEdge.DataContext = dijkstra.DataE;
+            listViewDijk.DataContext = dijkstra.DataN;
+
+ 
         }
     }
 }
