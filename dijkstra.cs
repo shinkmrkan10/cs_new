@@ -3,8 +3,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Data;
     public class Dijkstra
     {
-  // スレッド間の排他ロックに利用するオブジェクト
-//  private object _lockObject = new object();
 		const int INF = 1000000;
 		const int WIDTH = 9;
 		const int HEIGHT =9;
@@ -91,30 +89,4 @@ using System.Windows.Data;
        			}
 	    	}
 		}		
-			/*
-  int x, y;
-      while(true){
-        min = INF;
-        for(x = 0; x < NUMBER; x++){
-          if(!used[x] && (min > cost[x])){
-            min = cost[x];
-            used[x] = true;
-          }
-        }
-        if(min == INF){
-          break;
-        }
-        for(y = 0; y < NUMBER; y++){
-          if(cost[y] == min){
-            for(x = 0; x < NUMBER; x++){
-              if(cost[x] > dist[x,y] + cost[y]){
-                cost[x] = dist[x,y] + cost[y];
-              }
-            }
-          }
-        }
-
-		}
-		*/
 	}
-
