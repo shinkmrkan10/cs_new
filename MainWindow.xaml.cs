@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,17 @@ namespace cs_new
 
         //! "Name"カラム名
         private static readonly string ColumnName = "Name";
+		const int INF = 1000000;
+		const int WIDTH = 9;
+		const int HEIGHT =9;
+ 		const int NUMBER = WIDTH * HEIGHT ;
+		const int UNDER = -3;
+		const int OVER = 34;
+		int numN, numNew, min;
+		Random r1 = new System.Random();
+        public ObservableCollection<Edge> DataE { get; set; }
+        public ObservableCollection<Node> DataN { get; set; }
+ 
 
         public MainWindow()
         {
@@ -52,6 +64,7 @@ private void Init()
         {
             // データグリッドの初期化処理を行います。
             InitDataGrid();
+            InitListView();
 
             // データテーブルの生成処理を行います。
             var dataTable = CreateDataTable();
@@ -59,15 +72,17 @@ private void Init()
             // データグリッドにデータテーブルを設定します。
             dataGrid1.DataContext = dataTable;
 
-            NodeList nodeList = new NodeList();
-            listViewNode.DataContext = nodeList.DataN;
+ 
+            //NodeList nodeList = new NodeList();
 
-            EdgeList edgeList = new EdgeList();
+            //EdgeList edgeList = new EdgeList();
 
-            Dijkstra dijkstra = new Dijkstra();
+            //Dijkstra dijkstra = new Dijkstra();
+            //InitListView initListView = new InitListView();
 
-            listViewEdge.DataContext = dijkstra.DataE;
-            listViewDijk.DataContext = dijkstra.DataN;
+            mylistViewNode.DataContext = DataN;
+            listViewEdge.DataContext = DataE;
+            listViewDijk.DataContext = DataN;
 
 
         }
@@ -81,6 +96,129 @@ private void Init()
             dataGrid1.Columns.Add(CreateDataGridTextColumn("番号", ColumnNo));
             dataGrid1.Columns.Add(CreateDataGridTextColumn("名前", ColumnName));
         }
+
+        public void InitListView()
+        {
+            DataE = new ObservableCollection<Edge>();
+            DataN = new ObservableCollection<Node>();
+        // (データ入力:ノード)
+			for(int j=0;j<HEIGHT;j++){
+				for(int i=0;i<WIDTH;i++){
+					int n = j * WIDTH + i;
+					DataN.Add(new Node{num=n,x=i,y=j,cost=INF,used=false});
+				}
+			}
+		// スタートノード(num==0)設定
+		    foreach (Node d in DataN)
+		    {
+		      	if (d.num == 0){
+		        d.cost = 0;
+				}
+		    }
+        // (データ入力:エッジ)
+			for(int j=0;j<HEIGHT;j++){
+				for(int i=0;i<WIDTH-1;i++){
+					int n = j * HEIGHT + i;
+					int r = r1.Next(UNDER,OVER);
+					if(r>0){
+						DataE.Add(new Edge{from=n,to=n + 1,cost=1});
+					}
+					else if(r<0){
+						DataE.Add(new Edge{to=n,from=n + 1,cost=1});
+					}
+				}
+			}
+			for(int i=0;i<WIDTH;i++){
+				for(int j=0;j<HEIGHT-1;j++){
+					int n = j * WIDTH + i;
+					int r = r1.Next(UNDER,OVER);
+					if(r>0){
+						DataE.Add(new Edge{from= n,to=n + WIDTH,cost=1});
+					}
+					else if(r<0){
+						DataE.Add(new Edge{to= n,from=n + WIDTH,cost=1});
+					}
+				}
+			}
+            //NodeList nodeList = new NodeList();
+            ListView mylistViewNode = new ListView();
+            GridView myGridView = new GridView();
+            //myGridView.AllowsColumnReorder = true; 
+            //myGridView.ColumnHeaderToolTip = "Employee Information";
+
+            StackPanel myStackPanel = new StackPanel();
+            mylistViewNode.DataContext = DataN;
+            mylistViewNode.ItemsSource = DataN;
+            mylistViewNode.View = myGridView;
+           // mylistViewNode.ItemsSource = "{Binding <nodeList.DataN>}";
+            //myStackPanel.Children.Add(mylistViewNode);
+            //
+            
+            //var mylistViewNode = new ListView();
+            //listViewNode.SetValue(Grid.RowProperty, 0);
+            //listViewNode.SetValue(Grid.ColumnProperty, 0);
+/* 
+    // 動的にバインディング
+    Binding bi;
+    bi = new Binding("LastName"); 
+    bi.Mode = BindingMode.TwoWay;
+    this.TextName.SetBinding(TextBox.TextProperty, bi);
+    bi = new Binding("OutName"); 
+    bi.Mode = BindingMode.TwoWay;
+    this.ItemsSource.SetBinding(TextBox.TextProperty, bi);
+*/     
+            myStackPanel.Children.Add(mylistViewNode);
+            //var binding = new Binding("num") { Source = "{Binding}", Path = new PropertyPath(ListView.ViewProperty) };
+            var binding = new Binding() { Source = DataN, Path = new PropertyPath(ListView.ViewProperty) };
+            binding.Mode = BindingMode.TwoWay;
+            //var nodeList = new NodeList();
+            mylistViewNode.SetBinding(ListView.ViewProperty, binding);
+
+            GridViewColumn gvc1 = new GridViewColumn(); 
+            gvc1.DisplayMemberBinding = new Binding("num");
+            gvc1.Header = "Number";
+            gvc1.Width = 30;
+            myGridView.Columns.Add(gvc1);
+            GridViewColumn gvc2 = new GridViewColumn();
+            gvc2.DisplayMemberBinding = new Binding("x");
+            gvc2.Header = "x";
+            gvc2.Width = 30;
+            myGridView.Columns.Add(gvc2);
+            GridViewColumn gvc3 = new GridViewColumn();
+            gvc3.DisplayMemberBinding = new Binding("y");
+            gvc3.Header = "y";
+            gvc3.Width = 30;
+            myGridView.Columns.Add(gvc3);
+            GridViewColumn gvc4 = new GridViewColumn();
+            gvc4.DisplayMemberBinding = new Binding("cost");
+            gvc4.Header = "cost";
+            gvc4.Width = 60;
+            myGridView.Columns.Add(gvc4);
+            GridViewColumn gvc5 = new GridViewColumn();
+            gvc5.DisplayMemberBinding = new Binding("used");
+            gvc5.Header = "used";
+            gvc5.Width = 40;
+            myGridView.Columns.Add(gvc5);
+          
+            //mylistViewNode.DataContext = DataN;
+        }
+    
+
+/*ListView myListView = new ListView();
+
+GridView myGridView = new GridView();
+myGridView.AllowsColumnReorder = true; 
+myGridView.ColumnHeaderToolTip = "Employee Information";
+
+GridViewColumn gvc1 = new GridViewColumn();
+gvc1.DisplayMemberBinding = new Binding("FirstName");
+gvc1.Header = "FirstName";
+gvc1.Width = 100;
+myGridView.Columns.Add(gvc1);*/
+            //
+    
+//        <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=num}" Width="30"/>
+    
 
         /**
          * @brief データグリッドテキストカラムを生成します。

@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
 <ScrollViewer VerticalScrollBarVisibility="Visible">
     <Grid>
-            <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -17,21 +17,11 @@
         <StackPanel Margin="10" Grid.Column="0">
             <DataGrid Name="dataGrid1" AutoGenerateColumns="False" DataContext="{Binding}" ItemsSource="{Binding}" />
         </StackPanel>
-<StackPanel Margin="10" Grid.Column="1">
-<ListView ItemsSource="{Binding}" x:Name="listViewNode" Margin="30,30,0,0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=num}" Width="30"/>
-                    <GridViewColumn Header="x" DisplayMemberBinding="{Binding Path=x}" Width="30"/>
-                    <GridViewColumn Header="y" DisplayMemberBinding="{Binding Path=y}" Width="30"/>
-                    <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=cost}" Width="60"/>
-                    <GridViewColumn Header="used" DisplayMemberBinding="{Binding Path=used}" Width="40"/>
-                </GridView>
-            </ListView.View>
-</ListView>
-</StackPanel>
-<StackPanel Margin="10" Grid.Column="2">
-<ListView ItemsSource="{Binding}" x:Name="listViewEdge" Margin="30,30,0,0">
+        <StackPanel Margin="10" Grid.Column="1">
+            <ListView x:Name="mylistViewNode" DataContext="{Binding}" ItemsSource="{Binding}" Margin="30,30,0,0" />
+        </StackPanel>
+        <StackPanel Margin="10" Grid.Column="2">
+        <ListView ItemsSource="{Binding}" x:Name="listViewEdge" Margin="30,30,0,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="From" DisplayMemberBinding="{Binding Path=from}" Width="30"/>
@@ -39,10 +29,10 @@
                     <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=cost}" Width="60"/>
                 </GridView>
             </ListView.View>
-</ListView>
-</StackPanel>
-<StackPanel Margin="10" Grid.Column="3">
-<ListView ItemsSource="{Binding}" x:Name="listViewDijk" Margin="30,30,0,0">
+        </ListView>
+        </StackPanel>
+        <StackPanel Margin="10" Grid.Column="3">
+        <ListView ItemsSource="{Binding}" x:Name="listViewDijk" Margin="30,30,0,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=num}" Width="30"/>
@@ -52,8 +42,8 @@
                     <GridViewColumn Header="used" DisplayMemberBinding="{Binding Path=used}" Width="40"/>
                 </GridView>
             </ListView.View>
-</ListView>
-</StackPanel>
+        </ListView>
+        </StackPanel>
     </Grid>
 </ScrollViewer>
 </Window> 
