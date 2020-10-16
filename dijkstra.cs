@@ -22,7 +22,7 @@ using System.Windows.Data;
 			for(int j=0;j<HEIGHT;j++){
 				for(int i=0;i<WIDTH;i++){
 					int n = j * WIDTH + i;
-					DataN.Add(new Node{num=n,x=i,y=j,cost=INF,used=false});
+					DataN.Add(new Node{num=n,x=i,y=j,cost=INF,used=false,from=n});
 				}
 			}
 		// スタートノード(num==0)設定
@@ -81,6 +81,7 @@ using System.Windows.Data;
 									if(dNew.num==numNew && (dNew.cost > dE.cost + min) )
 									{
 										dNew.cost = dE.cost + min;
+										dNew.from = dE.from;
 									}
 								}
 							}

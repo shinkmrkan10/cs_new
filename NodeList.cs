@@ -5,8 +5,8 @@ public class NodeList {
   // スレッド間の排他ロックに利用するオブジェクト
   private object _lockObject = new object();
 		const int INF = 1000000;
-		const int WIDTH = 6;
-		const int HEIGHT =6;
+		const int WIDTH = 9;
+		const int HEIGHT =9;
         // バインディングの指定先プロパティ
         public ObservableCollection<Node> DataN { get; set; }
  
@@ -16,7 +16,7 @@ public class NodeList {
 			for(int j=0;j<HEIGHT;j++){
 				for(int i=0;i<WIDTH;i++){
 					int n = j * WIDTH + i;
-					DataN.Add(new Node{num=n,x=i,y=j,cost=INF,used=false});
+					DataN.Add(new Node{num=n,x=i,y=j,cost=INF,used=false,from=n});
 				}
 			}
 		// スタートノード(num==0)設定

@@ -5,23 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cs_new"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="480" Width="780">
 <ScrollViewer VerticalScrollBarVisibility="Visible">
 <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 <StackPanel Margin="10" Grid.Column="0">
 <ListView ItemsSource="{Binding}" x:Name="listViewNode" Margin="30,30,0,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=num}" Width="30"/>
+                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Path=num}" Width="30">
+                    <GridViewColumn.HeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="Background" Value="DarkBlue" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        </Style>
+                        </GridViewColumn.HeaderContainerStyle>
+                    </GridViewColumn>
                     <GridViewColumn Header="x" DisplayMemberBinding="{Binding Path=x}" Width="30"/>
                     <GridViewColumn Header="y" DisplayMemberBinding="{Binding Path=y}" Width="30"/>
                     <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=cost}" Width="60"/>
                     <GridViewColumn Header="used" DisplayMemberBinding="{Binding Path=used}" Width="40"/>
+                    <GridViewColumn Header="from" DisplayMemberBinding="{Binding Path=from}" Width="30"/>
                 </GridView>
             </ListView.View>
 </ListView>
@@ -32,7 +41,7 @@
                 <GridView>
                     <GridViewColumn Header="From" DisplayMemberBinding="{Binding Path=from}" Width="30"/>
                     <GridViewColumn Header="To" DisplayMemberBinding="{Binding Path=to}" Width="30"/>
-                    <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=cost}" Width="60"/>
+                    <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=cost}" Width="30"/>
                 </GridView>
             </ListView.View>
 </ListView>
@@ -46,6 +55,7 @@
                     <GridViewColumn Header="y" DisplayMemberBinding="{Binding Path=y}" Width="30"/>
                     <GridViewColumn Header="cost" DisplayMemberBinding="{Binding Path=cost}" Width="60"/>
                     <GridViewColumn Header="used" DisplayMemberBinding="{Binding Path=used}" Width="40"/>
+                    <GridViewColumn Header="from" DisplayMemberBinding="{Binding Path=from}" Width="40"/>
                 </GridView>
             </ListView.View>
 </ListView>

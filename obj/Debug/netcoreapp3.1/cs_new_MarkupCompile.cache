@@ -1,20 +1,20 @@
 ﻿cs_new
-1.0.0.0
+
 
 winexe
 C#
 .cs
-c:\Users\kimura\git\cs_new\obj\Debug\netcoreapp3.1\
+C:\Users\kimura\git\cs_new\obj\Debug\netcoreapp3.1\
 cs_new
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-c:\Users\kimura\git\cs_new\App.xaml
-1219584333
+C:\Users\kimura\git\cs_new\App.xaml
+1-1463348523
 
-13464239477
-192674553305
+11-3338970
+192-1788516037
 MainWindow.xaml;
 
-True
+False
 
