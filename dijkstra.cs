@@ -8,7 +8,7 @@ using System.Windows.Data;
 		const int HEIGHT =9;
  		const int NUMBER = WIDTH * HEIGHT ;
 		const int UNDER = -3;
-		const int OVER = 34;
+		const int OVER = 100;
 		int numN, numNew, min;
 		Random r1 = new System.Random();
         public ObservableCollection<Edge> DataE { get; set; }
@@ -36,7 +36,13 @@ using System.Windows.Data;
 			for(int j=0;j<HEIGHT;j++){
 				for(int i=0;i<WIDTH-1;i++){
 					int n = j * HEIGHT + i;
-					int r = r1.Next(UNDER,OVER);
+					int r;
+					if(j>HEIGHT/3 && j<HEIGHT*2/3){
+						r = r1.Next(-OVER,-UNDER);
+					}
+					else{
+						r = r1.Next(UNDER,OVER);
+					}
 					if(r>0){
 						DataE.Add(new Edge{from=n,to=n + 1,cost=1});
 					}
@@ -48,7 +54,13 @@ using System.Windows.Data;
 			for(int i=0;i<WIDTH;i++){
 				for(int j=0;j<HEIGHT-1;j++){
 					int n = j * WIDTH + i;
-					int r = r1.Next(UNDER,OVER);
+					int r;
+					if(i>WIDTH/3 && i>WIDTH*2/3){
+						r = r1.Next(-OVER,-UNDER);
+					}
+					else{
+						r = r1.Next(UNDER,OVER);
+					}
 					if(r>0){
 						DataE.Add(new Edge{from= n,to=n + WIDTH,cost=1});
 					}
